@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Card Details</h1>
+
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ card.name }}</span>
+        <p>Breed: {{ card.breed }}</p>
+        <p>Description: {{ card.description }}</p>
+        {% if card.age > 0 %}
+        <p>Age: {{ card.age }}</p>
+        {% else %}
+        <p>Age: Kitten</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'cards_update' card.id %}">Edit</a>
+        <a href="{% url 'cards_delete' card.id %}">Delete</a>
+      </div>
+      <br>
+
+    </div>
+   <!-- photos uploaded -->
+
+   
+  </div>
+  <div class="col s6">
+<!--  -->
+ <form action="{% url 'add_feeding' card.id %}" method="post">
+      {% csrf_token %} {{ feeding_form.as_p }}
+      <input type="submit" class="btn" value="Add Feeding" />
+    </form>
+    <br />
+    {% if card.fed_for_today %}
+    <div class="card-panel teal-text center-align">
+      {{card.name}} has been fed all meals for today
+    </div>
+    {% else %}
+    <div class="card-panel red-text center-align">
+      {{card.name}} might be hungry
+    </div>
+    {% endif %}
+<!--  -->
+
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Meal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for feeding in card.feeding_set.all %}
+        <tr>
+          <td>{{feeding.date}}</td>
+          <td>{{feeding.get_meal_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col s6">
+    <h3>{{ card.name }}'s Toys</h3>
+    {% if card.toys.count %} {% for toy in card.toys.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">
+          A <span style="color: {{ toy.color }}">{{ toy.color }}</span>
+          {{ toy.name }}
+        </span>
+      </div>
+      <div class="card-action">
+        <form action="{% url 'assoc_toy_delete' card.id toy.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Remove</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>No Toys :(</h5>
+    {% endif %}
+  </div>
+  <div class="col s6">
+    <h3>Available Toys</h3>
+    {% if toys.count %} {% for toy in toys.all %}
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">
+          A <span style="color: {{ toy.color }}">{{ toy.color }}</span>
+          {{ toy.name }}
+        </span>
+      </div>
+      <div class="card-action">
+        <form action="{% url 'assoc_toy' card.id toy.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <h5>{{turtle.name}} Already Has All Toys Available</h5>
+    {% endif %}
+  </div>
+
+  <script>
+    var dateEl = document.getElementById("id_date");
+    M.Datepicker.init(dateEl, {
+      format: "yyyy-mm-dd",
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true,
+    });
+
+    var selectEl = document.getElementById("id_meal");
+    M.FormSelect.init(selectEl);
+  </script>
+  {% endblock %}
+
+</div>
