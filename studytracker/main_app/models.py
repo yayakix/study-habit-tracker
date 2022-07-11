@@ -2,7 +2,7 @@ from django.db import models
 # Import the reverse function
 from django.urls import reverse
 # Create your models here.
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth.models import User
 
@@ -42,6 +42,7 @@ class Feeding(models.Model):
         choices=MEALS,
         default=MEALS[0][0])
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    time = models.DurationField(default=timedelta(hours=0, minutes=0, seconds=0))
     def __str__(self):
         return f"{self.get_meal_display()} on {self.date}"
     #change default sort 
