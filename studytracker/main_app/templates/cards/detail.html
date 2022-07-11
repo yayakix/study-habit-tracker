@@ -9,11 +9,9 @@
         <span class="card-title">{{ card.name }}</span>
         <p>Breed: {{ card.breed }}</p>
         <p>Description: {{ card.description }}</p>
-        {% if card.age > 0 %}
-        <p>Age: {{ card.age }}</p>
-        {% else %}
-        <p>Age: Kitten</p>
-        {% endif %}
+        
+        <p>Time: {{ card.age }}</p>
+      
       </div>
       <div class="card-action">
         <a href="{% url 'cards_update' card.id %}">Edit</a>
@@ -49,6 +47,7 @@
         <tr>
           <th>Date</th>
           <th>Type</th>
+           <th>Time</th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +55,7 @@
         <tr>
           <td>{{feeding.date}}</td>
           <td>{{feeding.get_meal_display}}</td>
+          <td>{{feeding.time}}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -120,6 +120,11 @@
 
     var selectEl = document.getElementById("id_meal");
     M.FormSelect.init(selectEl);
+// add time
+    //   var timeeEl = document.getElementById("id_time");
+    // M.Timepicker.init(timeeEl, {
+    //   defaultTime: 'now',
+    // });
   </script>
   {% endblock %}
 
