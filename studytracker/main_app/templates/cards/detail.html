@@ -24,14 +24,14 @@
     </div>
    <!-- photos uploaded -->
 
-   
-  </div>
-  <div class="col s6">
-<!--  -->
- <form action="{% url 'add_feeding' card.id %}" method="post">
+    <form action="{% url 'add_feeding' card.id %}" method="post">
       {% csrf_token %} {{ feeding_form.as_p }}
       <input type="submit" class="btn" value="Add Feeding" />
     </form>
+  </div>
+  <div class="col s6">
+<!--  -->
+
     <br />
     {% if card.fed_for_today %}
     <div class="card-panel teal-text center-align">
