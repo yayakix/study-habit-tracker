@@ -26,7 +26,7 @@
 
     <form action="{% url 'add_feeding' card.id %}" method="post">
       {% csrf_token %} {{ feeding_form.as_p }}
-      <input type="submit" class="btn" value="Add Feeding" />
+      <input type="submit" class="btn" value="Add Session" />
     </form>
   </div>
   <div class="col s6">
@@ -48,7 +48,7 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Meal</th>
+          <th>Type</th>
         </tr>
       </thead>
       <tbody>
@@ -65,14 +65,15 @@
 <hr />
 <div class="row">
   <div class="col s6">
-    <h3>{{ card.name }}'s Toys</h3>
+    <h3>Learned</h3>
     {% if card.toys.count %} {% for toy in card.toys.all %}
     <div class="card">
       <div class="card-content">
         <span class="card-title">
-          A <span style="color: {{ toy.color }}">{{ toy.color }}</span>
-          {{ toy.name }}
-        </span>
+          Topic: {{ toy.name }}
+          <br>
+          Difficulty: {{ toy.color }}</span>
+          
       </div>
       <div class="card-action">
         <form action="{% url 'assoc_toy_delete' card.id toy.id %}" method="post">
@@ -82,17 +83,18 @@
       </div>
     </div>
     {% endfor %} {% else %}
-    <h5>No Toys :(</h5>
+    <h5>Nothing Mastered Yet!</h5>
     {% endif %}
   </div>
   <div class="col s6">
-    <h3>Available Toys</h3>
+    <h3>Need to Learn</h3>
     {% if toys.count %} {% for toy in toys.all %}
     <div class="card">
       <div class="card-content">
         <span class="card-title">
-          A <span style="color: {{ toy.color }}">{{ toy.color }}</span>
-          {{ toy.name }}
+            Topic: {{ toy.name }}
+          <br>
+          Difficulty: {{ toy.color }}
         </span>
       </div>
       <div class="card-action">
@@ -103,7 +105,7 @@
       </div>
     </div>
     {% endfor %} {% else %}
-    <h5>{{turtle.name}} Already Has All Toys Available</h5>
+    <h5>No more topics to learn</h5>
     {% endif %}
   </div>
 
