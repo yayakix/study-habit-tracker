@@ -6,10 +6,10 @@ from datetime import date, timedelta
 
 from django.contrib.auth.models import User
 
-MEALS = (
-    ('B', 'Breakfast'),
-    ('L', 'Lunch'),
-    ('D', 'Dinner')
+HEALS = (
+    ('H', 'High'),
+    ('M', 'Medium'),
+    ('L', 'Low')
 )
 class Toy(models.Model):
     link = models.CharField(max_length=550)
@@ -28,7 +28,7 @@ class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def fed_for_today(self):
-        return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+        return self.feeding_set.filter(date=date.today()).count() >= len(HEALS)
 
     def __str__(self):
         return self.name
@@ -37,14 +37,17 @@ class Card(models.Model):
 
 class Feeding(models.Model):
     date = models.DateField('feeding date')
-    meal = models.CharField(
+    focus = models.CharField(
         max_length=1,
-        choices=MEALS,
-        default=MEALS[0][0])
+
+        choices=HEALS,
+
+        default=HEALS[0][0]
+        )
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     time = models.DurationField(default=timedelta(hours=0, minutes=0, seconds=0))
     def __str__(self):
-        return f"{self.get_meal_display()} on {self.date}"
+        return f"{self.get_focus_display()} on {self.date}"
     #change default sort 
     class Meta:
         ordering = ['-date']

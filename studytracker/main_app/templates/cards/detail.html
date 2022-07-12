@@ -9,45 +9,48 @@
         <span class="card-title">{{ card.name }}</span>
         <p>Topic: {{ card.topic }}</p>
         <p>Description: {{ card.description }}</p>
-        
+
         <p>Hours: {{ card.hours }}</p>
-      
       </div>
       <div class="card-action">
         <a href="{% url 'cards_update' card.id %}">Edit</a>
         <a href="{% url 'cards_delete' card.id %}">Delete</a>
       </div>
-      <br>
-
+      <br />
     </div>
-   <!-- photos uploaded -->
+    <!-- photos uploaded -->
 
     <form action="{% url 'add_feeding' card.id %}" method="post">
       {% csrf_token %} {{ feeding_form.as_p }}
-      <input type="submit" class="btn" value="Add Session" style="background-color: rgb(58, 173, 54);"/>
+      <input
+        type="submit"
+        class="btn"
+        value="Add Session"
+        style="background-color: rgb(58, 173, 54)"
+      />
     </form>
   </div>
   <div class="col s6">
-<!--  -->
+    <!--  -->
 
     <br />
 
-<!--  -->
+    <!--  -->
 
     <table class="striped">
       <thead>
         <tr>
           <th>Date</th>
-          <th>Type</th>
-           <th>Time</th>
+          <th>Time</th>
+          <th>Focus Level</th>
         </tr>
       </thead>
       <tbody>
         {% for feeding in card.feeding_set.all %}
         <tr>
           <td>{{feeding.date}}</td>
-          <td>{{feeding.get_meal_display}}</td>
           <td>{{feeding.time}}</td>
+          <td>{{feeding.get_focus_display}}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -63,16 +66,25 @@
       <div class="card-content">
         <span class="card-title">
           Description: {{ toy.description }}
-          <br>
-          Link: 
-          <br>
-          {{ toy.link }}</span>
-          
+          <br />
+          Link:
+          <br />
+          {{ toy.link }}</span
+        >
       </div>
       <div class="card-action">
-        <form action="{% url 'assoc_toy_delete' card.id toy.id %}" method="post">
+        <form
+          action="{% url 'assoc_toy_delete' card.id toy.id %}"
+          method="post"
+        >
           {% csrf_token %}
-          <button type="submit" class="btn" style="background-color: rgb(240, 144, 80);">Remove</button>
+          <button
+            type="submit"
+            class="btn"
+            style="background-color: rgb(240, 144, 80)"
+          >
+            Remove
+          </button>
         </form>
       </div>
     </div>
@@ -86,15 +98,21 @@
     <div class="card truncate">
       <div class="card-content">
         <span class="card-title">
-            Description: {{ toy.description }}
-          <br>
+          Description: {{ toy.description }}
+          <br />
           Link: {{ toy.link }}
         </span>
       </div>
       <div class="card-action">
         <form action="{% url 'assoc_toy' card.id toy.id %}" method="post">
           {% csrf_token %}
-          <button type="submit" class="btn"style="background-color: rgb(58, 173, 54);">Add</button>
+          <button
+            type="submit"
+            class="btn"
+            style="background-color: rgb(58, 173, 54)"
+          >
+            Add
+          </button>
         </form>
       </div>
     </div>
@@ -112,14 +130,13 @@
       autoClose: true,
     });
 
-    var selectEl = document.getElementById("id_meal");
+    var selectEl = document.getElementById("id_focus");
     M.FormSelect.init(selectEl);
-// add time
+    // add time
     //   var timeeEl = document.getElementById("id_time");
     // M.Timepicker.init(timeeEl, {
     //   defaultTime: 'now',
     // });
   </script>
   {% endblock %}
-
 </div>
