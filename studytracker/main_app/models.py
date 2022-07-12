@@ -36,7 +36,7 @@ class Card(models.Model):
         return reverse('detail', kwargs={'card_id': self.id})
 
 class Feeding(models.Model):
-    date = models.DateField('feeding date')
+    date = models.DateField('Date')
     focus = models.CharField(
         max_length=1,
 

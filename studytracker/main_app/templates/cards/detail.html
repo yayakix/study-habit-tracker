@@ -64,13 +64,19 @@
     {% if card.toys.count %} {% for toy in card.toys.all %}
     <div class="card truncate">
       <div class="card-content">
+
         <span class="card-title">
-          Description: {{ toy.description }}
+          Description:   {{ toy.description }}
+                
+
           <br />
           Link:
           <br />
           {{ toy.link }}</span
         >
+                  <a href="{% url 'toys_detail' toy.id %}">
+Details
+        </a>
       </div>
       <div class="card-action">
         <form
