@@ -81,7 +81,7 @@ def signup(request):
 
 class CardCreate(LoginRequiredMixin, CreateView):
     model = Card
-    fields = ['name', 'topic', 'description', 'hours']
+    fields = ['goal', 'topic', 'description', 'hours']
     success_url = '/cards/'
     def form_valid(self, form):
     # Assign the logged in user (self.request.user)

@@ -20,7 +20,7 @@ class Toy(models.Model):
         return reverse('toys_detail', kwargs={'pk': self.id})
 
 class Card(models.Model):
-    name = models.CharField(max_length=100)
+    goal = models.CharField(max_length=100)
     topic = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     hours = models.IntegerField()
@@ -31,7 +31,7 @@ class Card(models.Model):
         return self.feeding_set.filter(date=date.today()).count() >= len(HEALS)
 
     def __str__(self):
-        return self.name
+        return self.goal
     def get_absolute_url(self):
         return reverse('detail', kwargs={'card_id': self.id})
 

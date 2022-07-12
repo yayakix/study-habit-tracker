@@ -6,7 +6,7 @@
   <div class="col s6">
     <div class="card">
       <div class="card-content">
-        <span class="card-title">{{ card.name }}</span>
+        <span class="card-title">{{ card.goal }}</span>
         <p>Topic: {{ card.topic }}</p>
         <p>Description: {{ card.description }}</p>
 
@@ -24,9 +24,9 @@
       {% csrf_token %} {{ feeding_form.as_p }}
       <input
         type="submit"
-        class="btn"
+        class="btn yellow darken-3"
         value="Add Session"
-        style="background-color: rgb(58, 173, 54)"
+        
       />
     </form>
   </div>
@@ -86,8 +86,7 @@ Details
           {% csrf_token %}
           <button
             type="submit"
-            class="btn"
-            style="background-color: rgb(240, 144, 80)"
+            class="btn  deep-orange"
           >
             Remove
           </button>
@@ -95,7 +94,7 @@ Details
       </div>
     </div>
     {% endfor %} {% else %}
-    <h5>Nothing Mastered Yet!</h5>
+    <h5>You have not added any helpful resources yet</h5>
     {% endif %}
   </div>
   <div class="col s6">
@@ -114,8 +113,8 @@ Details
           {% csrf_token %}
           <button
             type="submit"
-            class="btn"
-            style="background-color: rgb(58, 173, 54)"
+            class="btn yellow darken-3"
+            
           >
             Add
           </button>
@@ -123,7 +122,7 @@ Details
       </div>
     </div>
     {% endfor %} {% else %}
-    <h5>No more topics to learn</h5>
+    <h5>No more resources to add</h5>
     {% endif %}
   </div>
 
