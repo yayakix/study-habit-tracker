@@ -1,15 +1,22 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>All Study Sessions</h1>
-<div class="sessioncontainer">
+  <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+<div class="sessioncontainer row">
 {% for card in cards %}
 
-<div class="card">
+<div class="card hoverable col s5"  style="height: 265px; margin: 5px">
   <!-- add this single line below -->
   <a href="/cards/{{ card.id }}">
   <div class="card-content">
             <div class="row">
-      <div class="col s6">   
+      <div class="col s5">   
      <span class="card-title">{{ card.name }}</span>
     <p>Topic: {{ card.topic }}</p>
     <p>Description: {{ card.description }}</p>

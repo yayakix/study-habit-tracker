@@ -30,7 +30,10 @@
               <a href="/" class="left brand-logo"> Study Tracker</a>
             </li>
           </ul>
+          
           <ul class="right">
+
+            
           <li><a href="{% url 'about' %}">About</a></li>
 {% if user.is_authenticated %}
 <li><a href="{% url 'cards_create' %}">Add Study Session</a></li>
