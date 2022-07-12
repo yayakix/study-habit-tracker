@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from .models import Card, Toy
+from .models import Card, Toy, Feeding
 
 # Add UdpateView & DeleteView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -37,10 +37,16 @@ def cards_index(request):
 def cards_detail(request, card_id):
     card = Card.objects.get(id=card_id)
     toys_card_doesnt_have = Toy.objects.exclude(id__in = card.toys.all().values_list('id'))
+    # total_time = 0
+    # sessions = Feeding.objects
+    # for x in sessions:
+    #     # total_time+= x
+    #     print(x)
     feeding_form = FeedingForm()
     return render(request, 'cards/detail.html', {
         'card': card, 'feeding_form': feeding_form,
-        'toys': toys_card_doesnt_have
+        'toys': toys_card_doesnt_have, 
+        # 'time' : total_time
     })
 @login_required
 def add_feeding(request, card_id):

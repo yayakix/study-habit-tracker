@@ -32,6 +32,15 @@
   </div>
   <div class="col s6">
     <!--  -->
+    {% if card.fed_for_today %}
+    <div class="card-panel center-align">
+      You have studied this topic today!
+    </div>
+    {% else %}
+    <div class="card-panel red-text center-align">
+      You have not studied this topic today
+    </div>
+    {% endif %}
 
     <br />
 
@@ -43,6 +52,7 @@
           <th>Date</th>
           <th>Time</th>
           <th>Focus Level</th>
+          {{total_time}}
         </tr>
       </thead>
       <tbody>

@@ -28,7 +28,7 @@ class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def fed_for_today(self):
-        return self.feeding_set.filter(date=date.today()).count() >= len(HEALS)
+        return self.feeding_set.filter(date=date.today()).count() >= 1
 
     def __str__(self):
         return self.goal
@@ -48,6 +48,9 @@ class Feeding(models.Model):
     time = models.DurationField(default=timedelta(hours=0, minutes=0, seconds=0))
     def __str__(self):
         return f"{self.get_focus_display()} on {self.date}"
+    # def studied_for_today(self):
+    #     return self.feeding_set.filter(date=date.today()).count() >= len(HEALS)
+
     #change default sort 
     class Meta:
         ordering = ['-date']
