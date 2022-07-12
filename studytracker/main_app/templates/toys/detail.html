@@ -1,14 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Toy Details</h1>
+<h1> Details</h1>
 
 <div class="card">
   <a href="{% url 'toys_detail' toy.id %}">
     <div class="card-content">
-      <span class="card-title"
-        >A
-        <span class="{{ toy.color.lower }}-text">{{ toy.color }}</span>
-        {{toy.name}}</span
+      <span class="card-title">
+                Description: {{ toy.description }}
+
+          <br>
+                  Link: {{ toy.link }}
+
+       </span
       >
     </div>
     <div class="card-action">

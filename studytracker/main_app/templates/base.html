@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Card Collector</title>
+    <title>StudyTracker</title>
 
   
     <link
@@ -27,16 +27,17 @@
         <div class="nav-wrapper indigo lighten-4">
           <ul>
             <li>
-              <a href="/" class="left brand-logo"> CardCollector</a>
+              <a href="/" class="left brand-logo"> Study Tracker</a>
             </li>
           </ul>
           <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
 {% if user.is_authenticated %}
-<li><a href="{% url 'cards_create' %}">Add a card</a></li>
-<li><a href="{% url 'index' %}">View All My cards</a></li>
-   <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
-            <li><a href="{% url 'toys_create' %}">Add a Toy</a></li>
+<li><a href="{% url 'cards_create' %}">Add Study Session</a></li>
+<li><a href="{% url 'index' %}">View All Sessions</a></li>
+            <li><a href="{% url 'toys_create' %}">Add Resource</a></li>
+
+   <li><a href="{% url 'toys_index' %}">View All Resources</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
              {% else %}
 <li><a href="{% url 'signup' %}">Sign Up</a></li>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} {% if object %}
 <h1>Update {{ object.name }}</h1>
 {% else %}
-<h1>Add Toy</h1>
+<h1>Create New Resource</h1>
 {% endif %}
 
 <form action="" method="post">
@@ -12,7 +12,7 @@
   <input
     class="btn blue"
     type="submit"
-    value="{% if object %} Update Toy {% else %} Add Toy {% endif %}"
+    value="{% if object %} Update! {% else %} Add! {% endif %}"
   />
 </form>
 

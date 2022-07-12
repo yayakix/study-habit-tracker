@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Card List</h1>
-
+<h1>All Study Sessions</h1>
+<div class="sessioncontainer">
 {% for card in cards %}
 
 <div class="card">
@@ -11,13 +11,15 @@
             <div class="row">
       <div class="col s6">   
      <span class="card-title">{{ card.name }}</span>
-    <p>Breed: {{ card.breed }}</p>
+    <p>Topic: {{ card.topic }}</p>
     <p>Description: {{ card.description }}</p>
-    <p>Time: {{ card.age }}</p>
+    <p>Hours to spend: {{ card.hours }}</p>
   </div>
       <div class="col s6"><img src={{ card.image }}></div>
     </div>
   </div>
   </a>
 </div>
-{% endfor %} {% endblock %}
+
+{% endfor %}
+</div> {% endblock %}

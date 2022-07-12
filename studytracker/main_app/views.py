@@ -81,7 +81,7 @@ def signup(request):
 
 class CardCreate(LoginRequiredMixin, CreateView):
     model = Card
-    fields = ['name', 'breed', 'description', 'age']
+    fields = ['name', 'topic', 'description', 'hours']
     success_url = '/cards/'
     def form_valid(self, form):
     # Assign the logged in user (self.request.user)
@@ -92,7 +92,7 @@ class CardCreate(LoginRequiredMixin, CreateView):
 
 class CardUpdate(LoginRequiredMixin, UpdateView):
     model = Card
-    fields = ['breed', 'description', 'age']
+    fields = ['topic', 'description', 'hours']
 
 class CardDelete(LoginRequiredMixin, DeleteView):
     model = Card
@@ -108,12 +108,12 @@ class ToyDetail(LoginRequiredMixin, DetailView):
 
 class ToyCreate(LoginRequiredMixin, CreateView):
     model = Toy
-    fields = ['name', 'color']
+    fields = ['link', 'description']
 
 
 class ToyUpdate(LoginRequiredMixin, UpdateView):
     model = Toy
-    fields = ['name', 'color']
+    fields = ['link', 'description']
 
 
 class ToyDelete(LoginRequiredMixin, DeleteView):
