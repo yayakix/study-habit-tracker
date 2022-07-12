@@ -7,53 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>StudyTracker</title>
-
-  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-  <link
+    <link
       rel="stylesheet"
       type="text/css"
       href="{% static 'css/style.css' %}"
     />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
-  <body>
+  <body style="background-color: #F9F9F9; font-family: 'Work Sans', sans-serif;">
     <header class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper  blue-grey">
+        <div class="nav-wrapper black">
           <ul>
             <li>
               <a href="/" class="left brand-logo"> Study Tracker</a>
             </li>
           </ul>
-          
-          <ul class="right">
 
-            
-          <li><a href="{% url 'about' %}">About</a></li>
-{% if user.is_authenticated %}
-<li><a href="{% url 'cards_create' %}">Add Study Session</a></li>
-<li><a href="{% url 'index' %}">View All Sessions</a></li>
+          <ul class="right">
+            <li><a href="{% url 'about' %}">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'cards_create' %}">Add Study Session</a></li>
+            <li><a href="{% url 'index' %}">View All Sessions</a></li>
             <li><a href="{% url 'toys_create' %}">Add Resource</a></li>
 
-   <li><a href="{% url 'toys_index' %}">View All Resources</a></li>
+            <li><a href="{% url 'toys_index' %}">View All Resources</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
-             {% else %}
-<li><a href="{% url 'signup' %}">Sign Up</a></li>
-<li><a href="{% url 'login' %}">Log In</a></li>
-  {% endif %}
+            {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
-    <footer class="page-footer blue-grey
-">
-      <div class="right">All Rights Reserved, © 2019 card Collector</div>
+    <footer class="page-footer black">
+      <div class="right">All Rights Reserved, © 2022 Study Tracker</div>
     </footer>
   </body>
 </html>
