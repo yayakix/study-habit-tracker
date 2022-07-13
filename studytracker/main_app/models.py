@@ -11,20 +11,20 @@ HEALS = (
     ('M', 'Medium'),
     ('L', 'Low')
 )
-class Toy(models.Model):
+class Resource(models.Model):
     link = models.CharField(max_length=550)
     description = models.TextField()
     def __str__(self):
         return f'{self.color} {self.name}'
     def get_absolute_url(self):
-        return reverse('toys_detail', kwargs={'pk': self.id})
+        return reverse('resources_detail', kwargs={'pk': self.id})
 
 class Card(models.Model):
     goal = models.CharField(max_length=100)
     topic = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     hours = models.IntegerField()
-    toys = models.ManyToManyField(Toy)
+    resources = models.ManyToManyField(Resource)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def fed_for_today(self):

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from .models import Card, Toy, Feeding
+from .models import Card, Resource, Feeding
 
 # Add UdpateView & DeleteView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -36,7 +36,7 @@ def cards_index(request):
 @login_required
 def cards_detail(request, card_id):
     card = Card.objects.get(id=card_id)
-    toys_card_doesnt_have = Toy.objects.exclude(id__in = card.toys.all().values_list('id'))
+    resources_card_doesnt_have = Resource.objects.exclude(id__in = card.resources.all().values_list('id'))
     # total_time = 0
     # sessions = Feeding.objects
     # for x in sessions:
@@ -45,7 +45,7 @@ def cards_detail(request, card_id):
     feeding_form = FeedingForm()
     return render(request, 'cards/detail.html', {
         'card': card, 'feeding_form': feeding_form,
-        'toys': toys_card_doesnt_have, 
+        'resources': resources_card_doesnt_have, 
         # 'time' : total_time
     })
 @login_required
@@ -57,12 +57,12 @@ def add_feeding(request, card_id):
         new_feeding.save()
     return redirect('detail', card_id=card_id)
 @login_required
-def assoc_toy(request, card_id, toy_id):
-    Card.objects.get(id=card_id).toys.add(toy_id)
+def assoc_resource(request, card_id, resource_id):
+    Card.objects.get(id=card_id).resources.add(resource_id)
     return redirect('detail', card_id=card_id)
 @login_required
-def assoc_toy_delete(request, card_id, toy_id):
-    Card.objects.get(id=card_id).toys.remove(toy_id)
+def assoc_resource_delete(request, card_id, resource_id):
+    Card.objects.get(id=card_id).resources.remove(resource_id)
     return redirect('detail', card_id=card_id)
 # signup
 def signup(request):
@@ -104,24 +104,24 @@ class CardDelete(LoginRequiredMixin, DeleteView):
     model = Card
     success_url = '/cards/'
 
-class ToyList(LoginRequiredMixin, ListView):
-    model = Toy
-    template_name = 'toys/index.html'
+class ResourceList(LoginRequiredMixin, ListView):
+    model = Resource
+    template_name = 'resources/index.html'
 
-class ToyDetail(LoginRequiredMixin, DetailView):
-    model = Toy
-    template_name = 'toys/detail.html'
+class ResourceDetail(LoginRequiredMixin, DetailView):
+    model = Resource
+    template_name = 'resources/detail.html'
 
-class ToyCreate(LoginRequiredMixin, CreateView):
-    model = Toy
+class ResourceCreate(LoginRequiredMixin, CreateView):
+    model = Resource
     fields = ['link', 'description']
 
 
-class ToyUpdate(LoginRequiredMixin, UpdateView):
-    model = Toy
+class ResourceUpdate(LoginRequiredMixin, UpdateView):
+    model = Resource
     fields = ['link', 'description']
 
 
-class ToyDelete(LoginRequiredMixin, DeleteView):
-    model = Toy
-    success_url = '/toys/'
+class ResourceDelete(LoginRequiredMixin, DeleteView):
+    model = Resource
+    success_url = '/resources/'

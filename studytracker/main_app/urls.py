@@ -10,14 +10,13 @@ urlpatterns = [
     path('cards/<int:pk>/update/', views.CardUpdate.as_view(), name='cards_update'),
     path('cards/<int:pk>/delete/', views.CardDelete.as_view(), name='cards_delete'),
     path('cards/<int:card_id>/add_feeding/', views.add_feeding, name='add_feeding'),
-    # associate toy with turtle
-    path('toys/', views.ToyList.as_view(), name='toys_index'),
-    path('toys/<int:pk>/', views.ToyDetail.as_view(), name='toys_detail'),
-    path('toys/create/', views.ToyCreate.as_view(), name='toys_create'),
-    path('toys/<int:pk>/update/', views.ToyUpdate.as_view(), name='toys_update'),
-    path('toys/<int:pk>/delete/', views.ToyDelete.as_view(), name='toys_delete'),
-    path('cards/<int:card_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
-    path('cards/<int:card_id>/assoc_toy/<int:toy_id>/delete/', views.assoc_toy_delete, name='assoc_toy_delete'),
+    path('resources/', views.ResourceList.as_view(), name='resources_index'),
+    path('resources/<int:pk>/', views.ResourceDetail.as_view(), name='resources_detail'),
+    path('resources/create/', views.ResourceCreate.as_view(), name='resources_create'),
+    path('resources/<int:pk>/update/', views.ResourceUpdate.as_view(), name='resources_update'),
+    path('resources/<int:pk>/delete/', views.ResourceDelete.as_view(), name='resources_delete'),
+    path('cards/<int:card_id>/assoc_resource/<int:resource_id>/', views.assoc_resource, name='assoc_resource'),
+    path('cards/<int:card_id>/assoc_resource/<int:resource_id>/delete/', views.assoc_resource_delete, name='assoc_resource_delete'),
     # new users
     path('accounts/signup/', views.signup, name='signup'),
   

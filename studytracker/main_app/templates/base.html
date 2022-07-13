@@ -36,9 +36,9 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'cards_create' %}">Add Session</a></li>
             <li><a href="{% url 'index' %}">All Sessions</a></li>
-            <li><a href="{% url 'toys_create' %}">Add Resource</a></li>
+            <li><a href="{% url 'resources_create' %}">Add Resource</a></li>
 
-            <li><a href="{% url 'toys_index' %}">All Resources</a></li>
+            <li><a href="{% url 'resources_index' %}">All Resources</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
