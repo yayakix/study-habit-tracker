@@ -10,14 +10,14 @@
       </form>
 <div class="sessioncontainer row">
 {% for card in cards %}
-
+{% if card.fed_for_today %}
 <div class="card hoverable col s5"  style="height: 305px; margin: 5px; ">
   <!-- add this single line below -->
   <a href="/cards/{{ card.id }}">
   <div class="card-content" style="color:black; font-size: medium; ">
             <div class="row">
       <div class="col s5">   
-     <span class="card-title">{{ card.goal }}</span>
+     <span class="card-title" style="color:green;"">{{ card.goal }}</span>
      <hr>
     <p>Topic: {{ card.topic }}</p>
     <p>Description: {{ card.description }}</p>
@@ -28,6 +28,25 @@
   </div>
   </a>
 </div>
+    {% else %}
+    <div class="card hoverable col s5"  style="height: 305px; margin: 5px; ">
+  <!-- add this single line below -->
+  <a href="/cards/{{ card.id }}">
+  <div class="card-content" style="color:black; font-size: medium; ">
+            <div class="row">
+      <div class="col s5">   
+     <span class="card-title" style="color:red;"">{{ card.goal }}</span>
+     <hr>
+    <p>Topic: {{ card.topic }}</p>
+    <p>Description: {{ card.description }}</p>
+    <p>Hours to spend: {{ card.hours }}</p>
+  </div>
+      <div class="col s6"><img src={{ card.image }}></div>
+    </div>
+  </div>
+  </a>
+</div>
+    {% endif %}
 
 {% endfor %}
 </div> {% endblock %}
