@@ -28,14 +28,14 @@ class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def fed_for_today(self):
-        return self.feeding_set.filter(date=date.today()).count() >= 1
+        return self.session_set.filter(date=date.today()).count() >= 1
 
     def __str__(self):
         return self.goal
     def get_absolute_url(self):
         return reverse('detail', kwargs={'card_id': self.id})
 
-class Feeding(models.Model):
+class Session(models.Model):
     date = models.DateField('Date')
     focus = models.CharField(
         max_length=1,

@@ -1,8 +1,8 @@
 
 from django.forms import ModelForm
-from .models import Feeding
+from .models import Session
 
-class FeedingForm(ModelForm):
+class SessionForm(ModelForm):
   class Meta:
-    model = Feeding
+    model = Session
     fields = ['date', 'focus', 'time']

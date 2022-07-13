@@ -43,8 +43,8 @@
     {% endif %}
         <br>
         
-      <form action="{% url 'add_feeding' card.id %}" method="post">
-      {% csrf_token %} {{ feeding_form.as_p }}
+      <form action="{% url 'add_session' card.id %}" method="post">
+      {% csrf_token %} {{ session_form.as_p }}
       <input
         type="submit"
         class="btn yellow darken-3"
@@ -79,11 +79,11 @@
         </tr>
       </thead>
       <tbody>
-        {% for feeding in card.feeding_set.all %}
+        {% for session in card.session_set.all %}
         <tr>
-          <td>{{feeding.date}}</td>
-          <td>{{feeding.time}}</td>
-          <td>{{feeding.get_focus_display}}</td>
+          <td>{{session.date}}</td>
+          <td>{{session.time}}</td>
+          <td>{{session.get_focus_display}}</td>
         </tr>
         {% endfor %}      </tbody>
     </table>

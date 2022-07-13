@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from .models import Card, Resource, Feeding
+from .models import Card, Resource, Session
 
 # Add UdpateView & DeleteView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -10,7 +10,7 @@ from django.views.generic.detail import DetailView
 # Add the following import
 from django.http import HttpResponse
 
-from .forms import FeedingForm
+from .forms import SessionForm
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -42,19 +42,19 @@ def cards_detail(request, card_id):
     # for x in sessions:
     #     # total_time+= x
     #     print(x)
-    feeding_form = FeedingForm()
+    session_form = SessionForm()
     return render(request, 'cards/detail.html', {
-        'card': card, 'feeding_form': feeding_form,
+        'card': card, 'session_form': session_form,
         'resources': resources_card_doesnt_have, 
         # 'time' : total_time
     })
 @login_required
-def add_feeding(request, card_id):
-    form = FeedingForm(request.POST)
+def add_session(request, card_id):
+    form = SessionForm(request.POST)
     if form.is_valid():
-        new_feeding = form.save(commit=False)
-        new_feeding.card_id = card_id
-        new_feeding.save()
+        new_session = form.save(commit=False)
+        new_session .card_id = card_id
+        new_session .save()
     return redirect('detail', card_id=card_id)
 @login_required
 def assoc_resource(request, card_id, resource_id):
