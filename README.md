@@ -42,6 +42,7 @@ Sign up to create a new user profile. Track your study progress by adding a new 
 For future improvements I will include...
 
 - Fix search bar functionality
+- Add newest items at top
 - Make session items editable
 - Add content to homepage
 - have a section to add additonal notes about the session
